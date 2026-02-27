@@ -9,19 +9,10 @@ const About = () => {
   });
 
 
-  // State for callout positions
-  const [callout1Pos, setCallout1Pos] = useState(() => {
-    const saved = localStorage.getItem('callout1Pos');
-    return saved ? JSON.parse(saved) : { x: 70, y: -104 };
-  });
-  const [callout2Pos, setCallout2Pos] = useState(() => {
-    const saved = localStorage.getItem('callout2Pos');
-    return saved ? JSON.parse(saved) : { x: 0, y: 0 };
-  });
-  const [callout3Pos, setCallout3Pos] = useState(() => {
-    const saved = localStorage.getItem('callout3Pos');
-    return saved ? JSON.parse(saved) : { x: -121, y: -100 };
-  });
+  // Hardcoded global callout positions (same across all devices)
+  const [callout1Pos, setCallout1Pos] = useState({ x: 70, y: 45 });
+  const [callout2Pos, setCallout2Pos] = useState({ x: 22, y: 50 });
+  const [callout3Pos, setCallout3Pos] = useState({ x: -121, y: -150 });
   const [isHovered, setIsHovered] = useState(false);
   const [animationKey, setAnimationKey] = useState(0);
   const [editMode, setEditMode] = useState(false);
@@ -58,17 +49,7 @@ const About = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [typedKeys]);
 
-  useEffect(() => {
-    localStorage.setItem('callout1Pos', JSON.stringify(callout1Pos));
-  }, [callout1Pos]);
 
-  useEffect(() => {
-    localStorage.setItem('callout2Pos', JSON.stringify(callout2Pos));
-  }, [callout2Pos]);
-
-  useEffect(() => {
-    localStorage.setItem('callout3Pos', JSON.stringify(callout3Pos));
-  }, [callout3Pos]);
 
   useEffect(() => {
     // Type title
